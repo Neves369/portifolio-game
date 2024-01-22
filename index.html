@@ -1,0 +1,206 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      font-family: 'Press Start 2P', cursive;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: black;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    strong{
+      color: rgb(43, 79, 195);
+    }
+    
+    #myModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* padding: 20px; */
+      background-color: #C99273;
+      border: 5px solid #987762;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      border-radius: 15px;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .close {
+      color: #000;
+      float: right;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-title {
+      min-width: 600px;
+      margin-top: -50px;
+      position: absolute;
+      background-color: #C99273;
+      border: 5px solid #987762;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .modal-content {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #000;
+      padding: 20px;
+    }
+
+    .retro-text {
+      font-size: 16px;
+      line-height: 1.5;
+      color: white;
+    }
+
+    .retro-button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #8f8f8f;
+      color: #fff;
+      border: 2px solid #000;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .retro-button:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+
+<div>
+  <!-- tradutor -->
+  <div class="gtranslate_wrapper"></div>
+
+  <!-- Sobreposição escura ao fundo do modal -->
+  <div class="modal-overlay" onclick="closeModal()"></div>
+
+  <!-- modal de inicio -->
+  <div id="myModal" class="modal">
+    <div class="modal-title">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p class="retro-text">Bem-vindo ao <strong>Portifólio do Douglas!</strong></p>
+    </div>
+    <div class="modal-content">
+      <br/>
+      <p class="retro-text">Utilize as teclas
+        <strong>W A S D</strong> ou <strong>⬅️⬆️➡️⬇️</strong> para se mover pelo mapa.</p>
+      <br/>
+      <p class="retro-text">Utilize a tecla
+        <strong>SPACE</strong> para interagir com os NPC'S.</p>
+      <a href="#" class="retro-button" onclick="closeModal()">Vamos Jogar!</a>
+    </div>
+  </div>
+  
+
+ 
+
+  <canvas></canvas>
+  
+  <!-- Balão de dialogos do jogo -->
+  <div
+    id="characterDialogueBox"
+    style="
+      background-color: white;
+      height: 240px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 4px black solid;
+      display: none;
+      padding: 12px;
+    "
+  ></div>
+
+
+</div>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+  integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+  integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script src="data/audio.js"></script>
+<script src="data/collisions.js"></script>
+<script src="data/characters.js"></script>
+<script src="js/utils.js"></script>
+<script src="classes.js"></script>
+<script src="index.js"></script>
+<script>window.gtranslateSettings = {"default_language":"pt","languages":["pt","en","es","nl","ru"],"wrapper_selector":".gtranslate_wrapper","horizontal_position":"right","vertical_position":"top","alt_flags":{"en":"usa","pt":"brazil"}}</script>
+<script src="https://cdn.gtranslate.net/widgets/latest/flags.js" defer></script>
+<script>
+  // Função para abrir o modal
+  function openModal() {
+    document.getElementById('myModal').style.display = 'block';
+    document.body.classList.add('modal-open');
+    document.querySelector('.modal-overlay').style.display = 'block';
+  }
+
+  // Função para fechar o modal
+  function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+    document.querySelector('.modal-overlay').style.display = 'none';
+  }
+
+  animate()
+  window.onload = openModal();
+</script>
+
+<script type="text/javascript">
+  
+</script>
