@@ -108,7 +108,14 @@ charactersMap.forEach((row, i) => {
             hold: 60
           },
           scale: 3,
-          dialogue: ['Eu ainda não sei o que vou dizer']
+          dialogue: [
+            'Ah, desculpe...',
+            'não te vi ai, estava distraído lendo um livro no \"Litterae\"',
+            'o quê? O nome do livro? A Divina Comédia, de Dante Alighieri...',
+            'Mas voltando ao \"Litterae\", super recomendo esse app, o controle de cache é bem elaborado...',
+            'e utiliza pacotes de módulo nativo jutamente com a comodidade do Expo, se você gosta de desenvolvimento de aplicativos deveria dar uma olhada...',
+            'peça ao capitão do porto que lhe mostre o \"Litterae\".'
+          ]
         })
       )
     }
@@ -253,7 +260,7 @@ charactersMap.forEach((row, i) => {
             hold: 100
           },
           scale: 3,
-          dialogue: ['vim do Monte Myōboku']
+          dialogue: ['Deixe-me jogar meu \"Campo Minado\" em paz!']
         })
       )
     }
@@ -271,7 +278,14 @@ charactersMap.forEach((row, i) => {
             hold: 100
           },
           scale: 3,
-          dialogue: ['vim do Monte Myōboku']
+          dialogue: [
+            'Você parece uma pessoa legal!',
+            'Então, vou te contar meu segredo...',
+            'sou um grande hacker! Faço parte do grupo Antônimos, você já deve ter ouvido falar...',
+            'Uma ferramente muito útil que eu costumo usar é o \"Port-scan\", ele garante que inicialmente eu tenha as informaçõers necessárias para encontrar possíveis vunerabilidades e penetrar na rede.',
+            'O capitão do navio me passou um template de um projeto de \"Web-scraping\" que também foi muito útil, sempre que preciso trabalhar com raspagem de dados da WEB eu costumo consultar esse projeto...',
+            'Agora vá, e não diga a ninguém que eu lhe contei essas coisas!'
+          ]
         })
       )
     }
