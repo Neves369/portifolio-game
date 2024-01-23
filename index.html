@@ -38,7 +38,23 @@
       color: rgb(43, 79, 195);
     }
     
-    #myModal {
+    #initialModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* padding: 20px; */
+      background-color: #C99273;
+      border: 5px solid #987762;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      border-radius: 15px;
+    }
+
+    #navigateModal {
       display: none;
       position: fixed;
       top: 50%;
@@ -85,6 +101,7 @@
     }
 
     .modal-content {
+      min-width: 600px;
       max-width: 600px;
       margin: 0 auto;
       color: #000;
@@ -112,6 +129,31 @@
     .retro-button:hover {
       background-color: #666;
     }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    li:hover::before {
+      content: '⚓';
+      position: absolute;
+      left: 20px;
+      color: #ddd;
+    }
+
+    a {
+      text-decoration: none;
+      color: #f5f5f5;
+    }
+    
   </style>
 </head>
 
@@ -123,7 +165,7 @@
   <div class="modal-overlay" onclick="closeModal()"></div>
 
   <!-- modal de inicio -->
-  <div id="myModal" class="modal">
+  <div id="initialModal" class="modal">
     <div class="modal-title">
       <span class="close" onclick="closeModal()">&times;</span>
       <p class="retro-text">Bem-vindo ao <strong>Portifólio do Douglas!</strong></p>
@@ -136,6 +178,23 @@
       <p class="retro-text">Utilize a tecla
         <strong>SPACE</strong> para interagir com os NPC'S.</p>
       <a href="#" class="retro-button" onclick="closeModal()">Vamos Jogar!</a>
+    </div>
+  </div>
+
+   <!-- modal de navegação -->
+  <div id="navigateModal" class="modal">
+    <div class="modal-title">
+      <span class="close" onclick="closeNavigate()">&times;</span>
+      <p class="retro-text">Navegar para o Projeto...</p>
+    </div>
+    <div class="modal-content">
+      <br/>
+      <ul>
+        <li><a target="_blank" href="https://spectacular-croquembouche-c1ceeb.netlify.app/">Divine Speakers</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+        <li><a href="#">Link 4</a></li>
+      </ul>
     </div>
   </div>
   
@@ -180,19 +239,25 @@
 <script src="js/utils.js"></script>
 <script src="classes.js"></script>
 <script src="index.js"></script>
-<script>window.gtranslateSettings = {"default_language":"pt","languages":["pt","en","es","nl","ru"],"wrapper_selector":".gtranslate_wrapper","horizontal_position":"right","vertical_position":"top","alt_flags":{"en":"usa","pt":"brazil"}}</script>
+<script>window.gtranslateSettings = {"default_language":"pt","languages":["pt","en","es","de","ru"],"wrapper_selector":".gtranslate_wrapper","horizontal_position":"right","vertical_position":"top","alt_flags":{"en":"usa","pt":"brazil"}}</script>
 <script src="https://cdn.gtranslate.net/widgets/latest/flags.js" defer></script>
 <script>
   // Função para abrir o modal
   function openModal() {
-    document.getElementById('myModal').style.display = 'block';
+    document.getElementById('initialModal').style.display = 'block';
     document.body.classList.add('modal-open');
     document.querySelector('.modal-overlay').style.display = 'block';
   }
 
   // Função para fechar o modal
   function closeModal() {
-    document.getElementById('myModal').style.display = 'none';
+    document.getElementById('initialModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+    document.querySelector('.modal-overlay').style.display = 'none';
+  }
+
+  function closeNavigate() {
+    document.getElementById('navigateModal').style.display = 'none';
     document.body.classList.remove('modal-open');
     document.querySelector('.modal-overlay').style.display = 'none';
   }

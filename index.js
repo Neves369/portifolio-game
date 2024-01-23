@@ -62,6 +62,9 @@ boyImg.src = './img/boy/Idle.png'
 const masterImg = new Image()
 masterImg.src = './img/master/Idle.png'
 
+const pointImg = new Image()
+pointImg.src = './img/point/Idle.png'
+
 charactersMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
     // 1026 === villager
@@ -79,7 +82,15 @@ charactersMap.forEach((row, i) => {
           },
           scale: 3,
           animate: true,
-          dialogue: ['...', 'O que dizer do meu criador?', 'Ele é um cara muito legal, além de ser um desenvolvedor incrível!', 'Vá até o porto e você encontrará alguns projetos em que ele trabalhou...']
+          dialogue: [
+            '...',
+            'Sabia que estamos em uma simulação criada pelo Douglas?',
+            'O quê? Você não sabe quem é Douglas?', 
+            'O que dizer do meu criador?', 
+            'Ele é um cara muito legal, além de ser um desenvolvedor incrível!',
+            'Bata na porta da casa mais ao leste da ilha, o bispo poderá lhe informar melhor sobre o Douglas.', 
+            'Dizem que se você pegar o barco do porto poderá visitar os projetos em que ele trabalhou, embora nunca vi ninguém que partiu para além dessas terras retornar...'
+          ]
         })
       )
     }
@@ -116,7 +127,12 @@ charactersMap.forEach((row, i) => {
           },
           animate: true,
           scale: 3,
-          dialogue: ['Não tenho diálogo para mostrar ainda']
+          dialogue: [
+            '(Irritado) Interrompendo meu treinamento, hein? Não percebe que estou em profunda meditação?',
+            'O respeito pelos outros é parte fundamental do caminho...',
+            '(Suspira) Muito bem, já que está aqui, vou abrir uma exceção. Escute com atenção e não ouse me interromper novamente. O treinamento é uma jornada solitária, e a paciência é a chave para alcançar a iluminação...',
+            'Você já perdeu tempo suficiente aqui. Siga para o porto, lá encontrará o próximo passo de sua jornada. Agora me deixe voltar à minha meditação.'
+          ]
         })
       )
     }
@@ -135,7 +151,19 @@ charactersMap.forEach((row, i) => {
           },
           animate: true,
           scale: 3,
-          dialogue: ["Salve Richard...", "O que você está achando?"]
+          dialogue: [
+            "Aquele velho caduco acha que estamos em uma simulação...", 
+            "Não é cômico? hahahaha",
+            "Ah esqueça ele e me diga. O que o trás por essas terras?",
+            "Bem, não importa...",
+            "Já ouviu falar do Divine Speakers?",
+            "O Divine Speakers é um app desenvolvido em React Native voltado ao estudo de teologia...",
+            "Lá você encontra diversos documentos excelentes para apoiar seus estudos...",
+            "Mas o que me chama atenção mesmo são as tecnologias empregadas no app...",
+            "Bem, eu não entendo muito disso, mas meu neto disse que o app possui integração com o Firebase além de contar com diversas técnicas e tecnologias de controle de memória...",
+            "Evitando assim chamadas desnecessárias ao servidor e disponibilizando os conteúdos offline sem consumir muita memória...",
+            "Talvez no porto você encontre mais informações sobre o app."
+          ]
         })
       )
     }
@@ -173,7 +201,14 @@ charactersMap.forEach((row, i) => {
           },
           animate: true,
           scale: 3,
-          dialogue: ['A vingança nunca é plena...', 'mata a alma e envenena']
+          dialogue: [
+            '...',
+            'Ichi,roku, kiaaai!',
+            'aqui em nossa escola adotamos a filosofia Kaizen...',
+            'hoje melhor que ontem e pior do que amanhã... ',
+            'como disse o mestre Lee, \"Eu não tenho medo do homem que praticou 10.000 chutes diferentes, mas sim do homem que praticou o mesmo chute 10.000 vezes.\"...',
+            'constância é o segredo para o suceso, tentar, tentar e tentar até dar certo!'
+          ]
         })
       )
     }
@@ -188,11 +223,19 @@ charactersMap.forEach((row, i) => {
           image: frogImg,
           frames: {
             max: 3,
-            hold: 100
+            hold: 50
           },
           animate: true,
           scale: 3,
-          dialogue: ['vim do Monte Myōboku']
+          dialogue: [
+            'Sou o grande sapo eremita do Monte Myōboku...',
+            'por milenios sou o detentor de toda a sabedoria terrena, sou mais velho que os oceânos que circundam essa ilha...',
+            'eu contemplei o surgimento e a queda de eras, reis, governos e ideais...',
+            'por isso me propus a buscar o que não pode ser tirado de mim, o conhecimento!',
+            'Estou catalogando espécimes nunca vistas pela humanidade, exemplares raros que só aparecem nesta ilha...',
+            'assim que eu obtiver um pouco do genoma dessas espécimes usarei o \"Comparador de Genomas\" para comparar o genoma delas com outras espécies já conhecidas...',
+            'se vocÊ também gosta de biologia recomendo adquirir um \"Comparador de Genomas\" no porto.'
+          ]
         })
       )
     }
@@ -214,6 +257,7 @@ charactersMap.forEach((row, i) => {
         })
       )
     }
+    // 1038 === boy
     else if (symbol === 1038) {
       characters.push(
         new Character({
@@ -231,6 +275,7 @@ charactersMap.forEach((row, i) => {
         })
       )
     }
+    // 1039 === boy
     else if (symbol === 1039) {
       characters.push(
         new Character({
@@ -262,7 +307,25 @@ charactersMap.forEach((row, i) => {
             hold: 100
           },
           scale: 3,
-          dialogue: ['Bem-vindo ao tour pelos projetos do Douglas...','Entre no barco, já vamos partir']
+          dialogue: ['Bem-vindo ao tour pelos projetos do Douglas...','Entre no barco, já vamos partir!']
+        })
+      )
+    }
+    // 1041 === point
+    else if (symbol === 1041) {
+      characters.push(
+        new Thing({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          },
+          image: pointImg,
+          frames: {
+            max: 4,
+            hold: 100
+          },
+          scale: 3,
+          dialogue: ['(Embarcando)']
         })
       )
     }
@@ -511,12 +574,16 @@ function animate() {
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
   if (player.isInteracting) {
+   
     switch (e.key) {
       case ' ':
         player.interactionAsset.dialogueIndex++
 
         const { dialogueIndex, dialogue } = player.interactionAsset
-        if (dialogueIndex <= dialogue.length - 1) {
+        if(dialogue == '(Embarcando)'){
+          openNavigate()
+        }
+        else if (dialogueIndex <= dialogue.length - 1) {
           document.querySelector('#characterDialogueBox').innerHTML =
             player.interactionAsset.dialogue[dialogueIndex]
           return
@@ -612,5 +679,10 @@ window.addEventListener('keyup', (e) => {
       break
   }
 })
+function openNavigate() {
+  document.getElementById('navigateModal').style.display = 'block';
+  document.body.classList.add('modal-open');
+  document.querySelector('.modal-overlay').style.display = 'block';
+}
 
 
