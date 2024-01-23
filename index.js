@@ -53,6 +53,15 @@ samuraiImg.src = './img/samurai/Idle.png'
 const blueSamuraiImg = new Image()
 blueSamuraiImg.src = './img/blueSamurai/Idle.png'
 
+const frogImg = new Image()
+frogImg.src = './img/frog/Idle.png'
+
+const boyImg = new Image()
+boyImg.src = './img/boy/Idle.png'
+
+const masterImg = new Image()
+masterImg.src = './img/master/Idle.png'
+
 charactersMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
     // 1026 === villager
@@ -165,6 +174,95 @@ charactersMap.forEach((row, i) => {
           animate: true,
           scale: 3,
           dialogue: ['A vingança nunca é plena...', 'mata a alma e envenena']
+        })
+      )
+    }
+    // 1036 === frog
+    else if (symbol === 1036) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          },
+          image: frogImg,
+          frames: {
+            max: 3,
+            hold: 100
+          },
+          animate: true,
+          scale: 3,
+          dialogue: ['vim do Monte Myōboku']
+        })
+      )
+    }
+    // 1037 === boy
+    else if (symbol === 1037) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          },
+          image: boyImg,
+          frames: {
+            max: 3,
+            hold: 100
+          },
+          scale: 3,
+          dialogue: ['vim do Monte Myōboku']
+        })
+      )
+    }
+    else if (symbol === 1038) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          },
+          image: boyImg,
+          frames: {
+            max: 3,
+            hold: 100
+          },
+          scale: 3,
+          dialogue: ['vim do Monte Myōboku']
+        })
+      )
+    }
+    else if (symbol === 1039) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          },
+          image: boyImg,
+          frames: {
+            max: 3,
+            hold: 100
+          },
+          scale: 3,
+          dialogue: ['vim do Monte Myōboku']
+        })
+      )
+    }
+    // 1040 === master
+    else if (symbol === 1040) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          },
+          image: masterImg,
+          frames: {
+            max: 4,
+            hold: 100
+          },
+          scale: 3,
+          dialogue: ['Bem-vindo ao tour pelos projetos do Douglas...','Entre no barco, já vamos partir']
         })
       )
     }
