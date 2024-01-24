@@ -65,6 +65,9 @@ masterImg.src = './img/master/Idle.png'
 const pointImg = new Image()
 pointImg.src = './img/point/Idle.png'
 
+const letterImg = new Image()
+letterImg.src = './img/point/Letter.png'
+
 charactersMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
     // 1026 === villager
@@ -88,8 +91,9 @@ charactersMap.forEach((row, i) => {
             'O quê? Você não sabe quem é Douglas?', 
             'O que dizer do meu criador?', 
             'Ele é um cara muito legal, além de ser um desenvolvedor incrível!',
-            'Bata na porta da casa mais ao leste da ilha, o bispo poderá lhe informar melhor sobre o Douglas.', 
-            'Dizem que se você pegar o barco do porto poderá visitar os projetos em que ele trabalhou, embora nunca vi ninguém que partiu para além dessas terras retornar...'
+            'Na casa mais ao leste da ilha mora um mago, talvez o Grande Mago o ajude a obter mais informações sobre o Douglas...', 
+            'Interaja com o bastão na frente da casa para chamar o mago. ',
+            'Ah, e dizem que se você pegar o barco do porto poderá visitar os projetos em que ele trabalhou, embora nunca vi ninguém que partiu para além dessas terras retornar...'
           ]
         })
       )
@@ -340,6 +344,34 @@ charactersMap.forEach((row, i) => {
           },
           scale: 3,
           dialogue: ['(Embarcando)']
+        })
+      )
+    }
+
+     // 1042 === scroll
+     else if (symbol === 1042) {
+      characters.push(
+        new Thing({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          },
+          image: letterImg,
+          frames: {
+            max: 1,
+            hold: 100
+          },
+          scale: 3,
+          dialogue: [
+            '(fores aperire)', 
+            'Bem-vindo!', 
+            'vou lhe contar tudo sobre o Douglas...',
+            'Como eu sei que você quer saber sobre o Douglas?',
+            'Eu fui programado para isso hahaha...',
+            'Vou lhe entregar um pergaminho com o conhecimento oculto sobre ele...',
+            'Depois abrirei um portal para as terras do GitHub, caso você precise de mais informações sobre ele...',
+            'liber, appare!'
+          ]
         })
       )
     }
@@ -594,19 +626,28 @@ window.addEventListener('keydown', (e) => {
         player.interactionAsset.dialogueIndex++
 
         const { dialogueIndex, dialogue } = player.interactionAsset
+        
         if(dialogue == '(Embarcando)'){
           openNavigate()
         }
+        
         else if (dialogueIndex <= dialogue.length - 1) {
+
+         
+
           document.querySelector('#characterDialogueBox').innerHTML =
             player.interactionAsset.dialogue[dialogueIndex]
           return
         }
-
+        
         // finish conversation
         player.isInteracting = false
         player.interactionAsset.dialogueIndex = 0
         document.querySelector('#characterDialogueBox').style.display = 'none'
+
+        if(dialogue[7] == 'liber, appare!'){
+          openPortal()
+        }
 
         break
     }
@@ -693,8 +734,15 @@ window.addEventListener('keyup', (e) => {
       break
   }
 })
+
 function openNavigate() {
   document.getElementById('navigateModal').style.display = 'block';
+  document.body.classList.add('modal-open');
+  document.querySelector('.modal-overlay').style.display = 'block';
+}
+
+function openPortal() {
+  document.getElementById('portalModal').style.display = 'block';
   document.body.classList.add('modal-open');
   document.querySelector('.modal-overlay').style.display = 'block';
 }

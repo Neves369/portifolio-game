@@ -20,6 +20,8 @@
       justify-content: center;
     }
 
+    
+
     h1 {
       margin: 0;
     }
@@ -70,6 +72,22 @@
       border-radius: 15px;
     }
 
+    #portalModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* padding: 20px; */
+      background-color: #C99273;
+      border: 5px solid #987762;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      border-radius: 15px;
+    }
+
     .modal-overlay {
       display: none;
       position: fixed;
@@ -98,15 +116,35 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       border-radius: 10px;
       white-space: nowrap;
+      z-index: 999;
     }
 
     .modal-content {
       min-width: 600px;
       max-width: 600px;
+      max-height: 500px;
+      overflow-y: auto;
       margin: 0 auto;
       color: #000;
       padding: 20px;
+      scrollbar-width: auto;
+      scrollbar-color: #82614e #e8b090;
     }
+
+    .modal-content::-webkit-scrollbar {
+      width: 10px;
+      height: 3px;
+    }
+
+    .modal::-webkit-scrollbar-track {
+      background: #e8b090;
+      padding: 2px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background-color: #82614e;
+    }
+    
 
     .retro-text {
       font-size: 16px;
@@ -153,7 +191,121 @@
       text-decoration: none;
       color: #f5f5f5;
     }
+
+    .logoDiv {
+      display: flex;
+      width: 80px;
+      height: 80px;
+      margin-top: -30px;
+      border-radius: 50px;
+      align-items: center;
+      justify-content: center;
+      background: #C99273;
+      box-shadow: 0px 4px 4px rgba(100, 100, 100, 0.5), inset 0px 4px 4px #987762;
+      margin-bottom: 25px;
+      position: absolute;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      padding: 10px;
+      border-radius: 40px;
+      background-color: #d4b4b4;
+      box-shadow: inset 0px 4px 4px 5px rgba(100, 100, 100, 0.2);
+    }
+
+    .foto {
+      width: 200px;
+      height: 200px;
+      padding: 10px;
+      margin-bottom: -100px;
+      position: relative;
+      border-radius: 50px;
+      background-color: #877c7c44;
+      box-shadow: inset 0px 1px 1px 2px rgb(100, 100, 100);
+    }
+
+    .ficha {
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      padding-top: 100px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
     
+    .ficha h2, p {
+      margin-bottom: 10px;
+    }
+
+    .ficha h2 {
+      font-size: 20px;
+      color: #555;
+      margin-top: 25px;
+    }
+
+    .descricao {
+      font-style: italic;
+    }
+
+    .ficha p{
+      font-size: 15px;
+      margin-left: 20px;
+    }
+
+    .atributo {
+      font-weight: bold;
+    }
+
+    .mago {
+      bottom: 0px;
+      width: 50px;
+      position: absolute;
+    }
+
+    .portal {
+      width: 200px;
+    }
+
+    .balao-fala {
+      position: absolute;
+      width: 200px;
+      right: 15px;
+      bottom: 20px;
+      padding: 15px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .balao-fala::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      border-width: 10px;
+      border-style: solid;
+      border-color: transparent #ffffff transparent transparent;
+      transform: translateY(-50%);
+    }
+
+    .mensagem {
+      text-align: left;
+      font-size: 10px;
+      margin: 0;
+      color: #333;
+    }
+
+    .portal-link{
+      display: flex; 
+      position: relative; 
+      justify-content: center; 
+      margin-top: 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -192,14 +344,62 @@
       <ul>
         <li><a target="_blank" href="https://spectacular-croquembouche-c1ceeb.netlify.app/">Divine Speakers - Teologia</a></li>
         <li><a target="_blank" href="https://aquamarine-lamington-0e80fc.netlify.app/">Litterae - Leitor de ebooks</a></li>
-        <li><a href="#">Link 3</a></li>
+        <li><a target="_blank" href="https://portscanner.netlify.app/">React Native - Port Scanner</a></li>
         <li><a href="#">Link 4</a></li>
       </ul>
     </div>
   </div>
-  
 
- 
+  <!-- modal de portal -->
+  <div id="portalModal" class="modal">
+    <div class="modal-title">
+      <div class="logoDiv">
+        <img class="logo" src="img/mage/Face.png" alt="mago"/>
+      </div>
+      <span class="close" onclick="closePortal()">&times;</span>
+      <p class="retro-text">Pergaminho Oculto</p>
+    </div>
+    <div class="modal-content" style="position: relative;">
+      <img class="foto" src="img/doug/doug.png" alt="doug"/>
+      
+      <div class="ficha">
+        <h2>Dados do Personagem</h2>
+        <p><span class="atributo">Nome:</span> Douglas Brian Neves</p>
+        <p><span class="atributo">Raça:</span> Humano</p>
+        <p><span class="atributo">Classe:</span> Desenvolvedor</p>
+
+        <h2>Aparência</h2>
+        <p><span class="atributo">Idade:</span> 24 anos</p>
+        <p><span class="atributo">Altura:</span> 1,74m</p>
+        <p><span class="atributo">Cor dos Olhos:</span> Castanho</p>
+        
+        <h2>História</h2>
+        <p class="descricao" style="text-justify: distribute; text-align: justify;">Um eterno estudante de programação, que pretende se aperfeiçoar a cada dia. Versado em JavaScript, Python e IoT, sendo também um amante do desenvolvimento mobile e segurança da informação.</p>
+        
+        <h2>Programação</h2>
+        <p><span class="atributo">Linguagens:</span><br/>JavaScript, Java, C++, Python</p>
+        <p><span class="atributo">Framework:</span><br/> React.js, React Native, Node.js</p>
+        <p><span class="atributo">Experiência:</span> 3 anos</p>
+        
+        <h2>Atributos</h2>
+        <p><span class="atributo">Inteligência:</span> 18</p>
+        <p><span class="atributo">Criatividade:</span> 15</p>
+        <p><span class="atributo">Resolução de Problemas:</span> 16</p>
+
+        <h2>Equipamento</h2>
+        <p class="descricao">Notebook, Fones de Ouvido, Livro de Código, café, spotify.</p>
+      </div>
+      
+      <a href="https://github.com/Neves369" target="_blank" class="portal-link">
+        <img class="portal" src="img/mage/portal.gif" alt="portal"/>
+        <img class="mago" src="img/mage/Idle.png" alt="mago"/>
+        <div class="balao-fala">
+          <p class="mensagem" id="mensagem">...</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
 
   <canvas></canvas>
   
@@ -249,6 +449,7 @@
     document.querySelector('.modal-overlay').style.display = 'block';
   }
 
+
   // Função para fechar o modal
   function closeModal() {
     document.getElementById('initialModal').style.display = 'none';
@@ -261,6 +462,30 @@
     document.body.classList.remove('modal-open');
     document.querySelector('.modal-overlay').style.display = 'none';
   }
+
+  function closePortal() {
+    document.getElementById('portalModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+    document.querySelector('.modal-overlay').style.display = 'none';
+  }
+
+  
+  const mensagens = [
+    "Rápido, entre pelo portal do GitHub!",
+    "Ele está prestes a se fechar!",
+    "..."
+  ];
+
+  let indiceMensagem = 0;
+  const elementoMensagem = document.getElementById("mensagem");
+
+  function alterarMensagem() {
+    indiceMensagem = (indiceMensagem + 1) % mensagens.length;
+    elementoMensagem.textContent = mensagens[indiceMensagem];
+  }
+
+  setInterval(alterarMensagem, 3000); // Altera a mensagem a cada 3 segundos
+  
 
   animate()
   window.onload = openModal();
