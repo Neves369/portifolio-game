@@ -193,7 +193,7 @@ charactersMap.forEach((row, i) => {
           },
           animate: true,
           scale: 3,
-          dialogue: ['Cara, não tem diálogo ainda...', 'para de ser teimoso!']
+          dialogue: ['Acerte primeiro!', 'Bata com força', 'Sem piedade!']
         })
       )
     }
@@ -307,7 +307,7 @@ charactersMap.forEach((row, i) => {
             hold: 100
           },
           scale: 3,
-          dialogue: ['vim do Monte Myōboku']
+          dialogue: ['🎵 Era só mais um Silva...', "que a estrela não brilha...", " ele er...", "Que foi? Não pode nem cantar mais nessa cidade?!"]
         })
       )
     }
