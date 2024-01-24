@@ -193,7 +193,7 @@ charactersMap.forEach((row, i) => {
           },
           animate: true,
           scale: 3,
-          dialogue: ['Acerte primeiro!', 'Bata com força', 'Sem piedade!']
+          dialogue: ['Acerte primeiro!', 'Bata com força!', 'Sem misericórdia!']
         })
       )
     }
@@ -735,6 +735,14 @@ window.addEventListener('keyup', (e) => {
   }
 })
 
+window.addEventListener('click', (e) => {
+    audio.Click.play()
+})
+
+document.getElementById('portal-link').addEventListener('click', (e) => {
+  audio.Teleport.play()
+})
+
 function openNavigate() {
   document.getElementById('navigateModal').style.display = 'block';
   document.body.classList.add('modal-open');
@@ -742,9 +750,13 @@ function openNavigate() {
 }
 
 function openPortal() {
+  audio.Map.stop()
+  audio.Portal.stop()
+  audio.Portal.play()
   document.getElementById('portalModal').style.display = 'block';
   document.body.classList.add('modal-open');
   document.querySelector('.modal-overlay').style.display = 'block';
+  document.getElementById('modal-ficha').scrollTop = 0;
 }
 
 

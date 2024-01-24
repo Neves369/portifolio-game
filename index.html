@@ -345,7 +345,7 @@
         <li><a target="_blank" href="https://divine-speakers.netlify.app">Divine Speakers - Teologia</a></li>
         <li><a target="_blank" href="https://litterae.netlify.app">Litterae - Leitor de ebooks</a></li>
         <li><a target="_blank" href="https://portscanner.netlify.app">React Native - Port Scanner</a></li>
-        <li><a href="#">Link 4</a></li>
+        <li><a target="_blank" href="https://comparadorgenoma.netlify.app/">Comparador de Genoma - Python</a></li>
       </ul>
     </div>
   </div>
@@ -359,7 +359,7 @@
       <span class="close" onclick="closePortal()">&times;</span>
       <p class="retro-text">Pergaminho Oculto</p>
     </div>
-    <div class="modal-content" style="position: relative;">
+    <div id="modal-ficha" class="modal-content" style="position: relative;">
       <img class="foto" src="img/doug/doug.png" alt="doug"/>
       
       <div class="ficha">
@@ -390,7 +390,10 @@
         <p class="descricao">Notebook, Fones de Ouvido, Livro de Código, café, spotify.</p>
       </div>
       
-      <a href="https://github.com/Neves369" target="_blank" class="portal-link">
+      <a id="portal-link" 
+         href="https://github.com/Neves369" 
+         target="_blank"
+         class="portal-link">
         <img class="portal" src="img/mage/portal.gif" alt="portal"/>
         <img class="mago" src="img/mage/Idle.png" alt="mago"/>
         <div class="balao-fala">
@@ -455,6 +458,7 @@
     document.getElementById('initialModal').style.display = 'none';
     document.body.classList.remove('modal-open');
     document.querySelector('.modal-overlay').style.display = 'none';
+    audio.Map.play()
   }
 
   function closeNavigate() {
@@ -467,6 +471,8 @@
     document.getElementById('portalModal').style.display = 'none';
     document.body.classList.remove('modal-open');
     document.querySelector('.modal-overlay').style.display = 'none';
+    audio.Portal.stop()
+    audio.Map.play()
   }
 
   
