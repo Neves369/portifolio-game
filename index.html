@@ -56,6 +56,22 @@
       border-radius: 15px;
     }
 
+    #plataformModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* padding: 20px; */
+      background-color: #C99273;
+      border: 5px solid #987762;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      border-radius: 15px;
+    }
+
     #navigateModal {
       display: none;
       position: fixed;
@@ -314,7 +330,18 @@
   <div class="gtranslate_wrapper"></div>
 
   <!-- Sobreposição escura ao fundo do modal -->
-  <div class="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal-overlay"></div>
+
+  <!-- modal de inicio -->
+  <div id="plataformModal" class="modal">
+    <div class="modal-title">
+      <p class="retro-text"><strong>Atenção!</strong></p>
+    </div>
+    <div class="modal-content">
+      <br/>
+      <p class="retro-text">Esta página não funciona em dispositivos móveis!!!</p>
+    </div>
+  </div>
 
   <!-- modal de inicio -->
   <div id="initialModal" class="modal">
@@ -340,12 +367,20 @@
       <p class="retro-text">Navegar para o Projeto...</p>
     </div>
     <div class="modal-content">
-      <br/>
       <ul>
+        <p >--- Projetos Pessoais ---</p>
         <li><a target="_blank" href="https://divine-speakers.netlify.app">Divine Speakers - Teologia</a></li>
         <li><a target="_blank" href="https://litterae.netlify.app">Litterae - Leitor de ebooks</a></li>
         <li><a target="_blank" href="https://portscanner.netlify.app">React Native - Port Scanner</a></li>
         <li><a target="_blank" href="https://comparadorgenoma.netlify.app/">Comparador de Genoma - Python</a></li>
+        <li><a target="_blank" href="https://github.com/Neves369/campoMinado">Campo Minado - React Native</a></li>
+        <br/>
+        <p>--- Projetos feitos na ZTI ---</p>
+        <li><a target="_blank" href="https://play.google.com/store/apps/details?id=br.com.ztitecnologia.clubesperancinha">Clube Esperancinha - Cliente</a></li>
+        <li><a target="_blank" href="https://play.google.com/store/apps/details?id=br.com.ztitecnologia.checkoutesperancinha">Clube Esperancinha - Checkout</a></li>
+        <li><a target="_blank" href="https://sejabimanager.com/br/">BIMANAGER - Cripto-ativos</a></li>
+        <li><a target="_blank" href="https://play.google.com/store/apps/details?id=br.com.ztitecnologia.sgbcliente">SGB - Beneficiário</a></li>
+        <li><a target="_blank" href="https://play.google.com/store/apps/details?id=br.com.ztitecnologia.appcorretor">SGB - Corretor</a></li>
       </ul>
     </div>
   </div>
@@ -440,6 +475,7 @@
 <script src="data/collisions.js"></script>
 <script src="data/characters.js"></script>
 <script src="js/utils.js"></script>
+<script src="js/checkDevice.js"></script>
 <script src="classes.js"></script>
 <script src="index.js"></script>
 <script>window.gtranslateSettings = {"default_language":"pt","languages":["pt","en","es","de","ru"],"wrapper_selector":".gtranslate_wrapper","horizontal_position":"right","vertical_position":"top","alt_flags":{"en":"usa","pt":"brazil"}}</script>
@@ -452,6 +488,12 @@
     document.querySelector('.modal-overlay').style.display = 'block';
   }
 
+  // Função para abrir o modal
+  function openDeviceModal() {
+    document.getElementById('plataformModal').style.display = 'block';
+    document.body.classList.add('modal-open');
+    document.querySelector('.modal-overlay').style.display = 'block';
+  }
 
   // Função para fechar o modal
   function closeModal() {
@@ -494,7 +536,7 @@
   
 
   animate()
-  window.onload = openModal();
+  window.onload =  checkDevice()?  openDeviceModal() : openModal();
 </script>
 
 <script type="text/javascript">

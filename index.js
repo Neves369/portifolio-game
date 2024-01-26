@@ -1,7 +1,7 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-canvas.width = window.screen.width
+canvas.width = window.screen.width;
 canvas.height = window.screen.height;
 
 const collisionsMap = []
@@ -307,7 +307,13 @@ charactersMap.forEach((row, i) => {
             hold: 100
           },
           scale: 3,
-          dialogue: ['🎵 Era só mais um Silva...', "que a estrela não brilha...", " ele er...", "Que foi? Não pode nem cantar mais nessa cidade?!"]
+          dialogue: [
+            'O Esperancinha é um dos bares mais tradicionais da cidade de Teresópolis...', 
+            'Eles tem um app de clube de pontos incrível!', 
+            'Dizem que foi o Douglas quem desenvolveu enquanto trabalhava para ZTI Tecnologia...',
+            'Lá no porto, entre os últimos destinos você poderá ver o link para a página do app na Google Playstore...',
+            'Clique em \"Clube Esperancinha - Cliente\" para acessar a página do app.'
+          ]
         })
       )
     }
