@@ -16,8 +16,8 @@ for (let i = 0; i < charactersMapData.length; i += 70) {
 
 const boundaries = []
 const offset = {
-  x: -435,
-  y: -620
+  x: -700,
+  y: -700
 }
 
 collisionsMap.forEach((row, i) => {
@@ -125,6 +125,7 @@ charactersMap.forEach((row, i) => {
     }
     // 1032 === monk
     else if (symbol === 1032) {
+      console.log("O monge: ", symbol, "está em: ", " x: ", j, " y: ", i)
       characters.push(
         new Character({
           position: {
@@ -414,8 +415,8 @@ playerRightImage.src = './img/playerRight.png'
 
 const player = new Sprite({
   position: {
-    x: canvas.width / 2 - 192 / 4 / 2,
-    y: canvas.height / 2 - 68 / 2
+    x: 20 * Boundary.width + offset.x,
+    y: 20 * Boundary.height + offset.y
   },
   image: playerDownImage,
   frames: {
