@@ -16,8 +16,8 @@ for (let i = 0; i < charactersMapData.length; i += 70) {
 
 const boundaries = []
 const offset = {
-  x: -700,
-  y: -700
+  x: -435,
+  y: -620
 }
 
 collisionsMap.forEach((row, i) => {
